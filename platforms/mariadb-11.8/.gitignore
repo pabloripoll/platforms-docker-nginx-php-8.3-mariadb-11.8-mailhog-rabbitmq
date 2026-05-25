@@ -1,4 +1,4 @@
 # .gitignore custom settings
 /docker/.env
-/data
-/root
+/docker/data
+/docker/root

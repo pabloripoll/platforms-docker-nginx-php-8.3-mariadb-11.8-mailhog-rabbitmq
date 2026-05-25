@@ -21,6 +21,6 @@ services:
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     volumes:
-      - ../data:/var/lib/mysql
+      - ./data:/var/lib/mysql
     tty: true
     restart: unless-stopped
