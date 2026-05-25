@@ -95,10 +95,10 @@ else
 	COMPOSE_PROJECT_CPUS=\"$(DOCKER_CPUS)\"\r\n\
 	COMPOSE_PROJECT_MEM=\"$(DOCKER_MEM)\"\r\n\
 	COMPOSE_PROJECT_SWAP=\"$(DOCKER_SWAP)\"\r\n\
-	MYSQL_ROOT_PASSWORD=\"$(SQL_ROOT)\"\r\n\
-	MYSQL_DATABASE=\"$(SQL_NAME)\"\r\n\
-	MYSQL_USER=\"$(SQL_USER)\"\r\n\
-	MYSQL_PASSWORD=\"$(SQL_PASS)\""> ./docker/.env;
+	MARIADB_ROOT_PASSWORD=\"$(SQL_ROOT)\"\r\n\
+	MARIADB_DATABASE=\"$(SQL_NAME)\"\r\n\
+	MARIADB_USER=\"$(SQL_USER)\"\r\n\
+	MARIADB_PASSWORD=\"$(SQL_PASS)\""> ./docker/.env;
 	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" DATABASE "${C_YEL}$(DOCKER_PLTF)${C_END}" - "${C_YEL}"docker-compose.yml"${C_END}" .env file "${C_GRN}"has been set."${C_END};
 	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" DATABASE "${C_YEL}$(DOCKER_PLTF)${C_END}" - Container name: "${C_GRN}$(DOCKER_CONTAINER)${C_END}
 	echo ${C_BLU}"$(PROJECT_NAME)"${C_END}" DATABASE "${C_YEL}$(DOCKER_PLTF)${C_END}" - Container image: "${C_GRN}$(DOCKER_CONTAINER):$(DOCKER_IMGK)${C_END}
@@ -151,7 +151,7 @@ clear: ## removes container from Docker running containers
 
 destroy: ## delete container image from Docker cache
 	cd docker && $(DOCKER) rmi -f $(DOCKER_CONTAINER):$(DOCKER_IMGK)
-	$(SUDO) rm -rf data root
+	cd docker && $(SUDO) rm -rf data root
 
 dev: ## sets a development enviroment
 	echo ${C_YEL}"\"dev\" recipe has not usage in this project"${C_END};
