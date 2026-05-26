@@ -1,6 +1,8 @@
 services:
 
   mariadb:
+    ports:
+      - 127.0.0.1:${COMPOSE_PROJECT_PORT}:3306
     networks:
       net: {}
 
