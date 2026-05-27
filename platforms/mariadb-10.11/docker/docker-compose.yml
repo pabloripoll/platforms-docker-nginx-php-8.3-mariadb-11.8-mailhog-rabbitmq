@@ -6,8 +6,6 @@ services:
       context: ./
       dockerfile: Dockerfile
     container_name: ${COMPOSE_PROJECT_LEAD}-${COMPOSE_PROJECT_NAME}
-    ports:
-      - ${COMPOSE_PROJECT_PORT}:3306
     deploy:
       resources:
         limits:

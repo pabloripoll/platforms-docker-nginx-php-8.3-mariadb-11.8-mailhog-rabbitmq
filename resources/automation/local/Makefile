@@ -162,14 +162,16 @@ db-info: ## shows docker related information
 db-set: ## sets the database enviroment file to build the container
 	cd platforms/$(DATABASE_PLTF) && $(MAKE) env-set
 
-db-create: ## creates the database container from Docker image
-	cd platforms/$(DATABASE_PLTF) && $(MAKE) build up
+db-build: ## builds and ensures changes in the Dockerfile, build steps, or copied-in files are applied
+	cd platforms/$(DATABASE_PLTF) && $(MAKE) build
 
-db-network: ## creates the database container external network
-	cd platforms/$(DATABASE_PLTF) && $(MAKE) clear
-	cd platforms/$(DATABASE_PLTF) && $(DOCKER_COMPOSE) -f docker-compose.yml -f docker-compose.network.yml up -d
+db-create: ## starts up or creates the container for running in detached mode
+	cd platforms/$(DATABASE_PLTF) && $(MAKE) up
 
-db-ssh: ## enters the apirest container shell
+db-network: ## starts up into an existing custom network for container-to-container communication, runnning in detached mode
+	cd platforms/$(DATABASE_PLTF) && $(MAKE) clear network
+
+db-ssh: ## enters the container shell
 	cd platforms/$(DATABASE_PLTF) && $(MAKE) ssh
 
 db-start: ## starts the database container running
