@@ -127,4 +127,4 @@ This project is open-sourced under the [MIT license](LICENSE).
 
 <br>
 
-- [PHP TOP ⮙](#top-header)
+- [GO TOP ⮙](#top-header)
