@@ -292,12 +292,14 @@ broker-info: ## shows the broker docker related information
 broker-set: ## sets the broker enviroment file to build the container
 	cd platforms/$(BROKER_PLTF) && $(MAKE) env-set
 
-broker-create: ## creates the broker container from Docker image
-	cd platforms/$(BROKER_PLTF) && $(MAKE) build up
+broker-build: ## builds broker and ensures changes in the Dockerfile, build steps, or copied-in files are applied
+	cd platforms/$(BROKER_PLTF) && $(MAKE) build
 
-broker-network: ## creates the broker container network - execute this recipe first before others
-	$(MAKE) broker-stop
-	cd platforms/$(BROKER_PLTF) && $(DOCKER_COMPOSE) -f docker-compose.yml -f docker-compose.network.yml up -d
+broker-create: ## starts up broker or creates the container for running in detached mode
+	cd platforms/$(BROKER_PLTF) && $(MAKE) up
+
+broker-network: ## starts up broker into an existing custom network for container-to-container communication, runnning in detached mode
+	cd platforms/$(BROKER_PLTF) && $(MAKE) clear network
 
 broker-ssh: ## enters the broker container shell
 	cd platforms/$(BROKER_PLTF) && $(MAKE) ssh
