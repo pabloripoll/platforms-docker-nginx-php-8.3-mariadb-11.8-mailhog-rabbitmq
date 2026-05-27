@@ -241,12 +241,14 @@ mailer-info: ## shows the mailer docker related information
 mailer-set: ## sets the mailer enviroment file to build the container
 	cd platforms/$(MAILER_PLTF) && $(MAKE) env-set
 
-mailer-create: ## creates the mailer container from Docker image
-	cd platforms/$(MAILER_PLTF) && $(MAKE) build up
+mailer-build: ## builds mailer and ensures changes in the Dockerfile, build steps, or copied-in files are applied
+	cd platforms/$(MAILER_PLTF) && $(MAKE) build
 
-mailer-network: ## creates the mailer container network - execute this recipe first before others
-	$(MAKE) mailer-stop
-	cd platforms/$(MAILER_PLTF) && $(DOCKER_COMPOSE) -f docker-compose.yml -f docker-compose.network.yml up -d
+mailer-create: ## starts up mailer or creates the container for running in detached mode
+	cd platforms/$(MAILER_PLTF) && $(MAKE) up
+
+mailer-network: ## starts up mailer into an existing custom network for container-to-container communication, runnning in detached mode
+	cd platforms/$(MAILER_PLTF) && $(MAKE) clear network
 
 mailer-ssh: ## enters the mailer container shell
 	cd platforms/$(MAILER_PLTF) && $(MAKE) ssh
