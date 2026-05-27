@@ -11,3 +11,6 @@ networks:
     driver: bridge
     external: true
     name: ${COMPOSE_PROJECT_LEAD}-${COMPOSE_PROJECT_CNET}
+  default:
+    name: ${COMPOSE_PROJECT_LEAD}-${COMPOSE_PROJECT_CNET}
+    external: true
